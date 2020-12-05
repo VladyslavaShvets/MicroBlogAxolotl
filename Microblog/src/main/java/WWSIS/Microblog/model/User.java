@@ -1,5 +1,7 @@
 package WWSIS.Microblog.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,18 +18,22 @@ public class User{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int userId;
 
-	@Column(name="Name")
+	@Column(name="Name", nullable = false, unique = true)
 	private String userName;
 	
-	@Column(name="Email")
+	@Column(name="BirthDate", nullable = false)
+	private Date birthDate;
+
+	@Column(name="Email", nullable = false, unique = true)
 	private String email;
 	
-	@Column(name="Password")
+	@Column(name="Password", nullable = false)
 	private String password;
 	
-	public User(int userID, String userName, String email, String password){
+	public User(int userID, String userName, Date birthDate, String email, String password){
 		this.userId = userID;
 		this.userName = userName;
+		this.birthDate = birthDate;
 		this.email = email;
 		this.password = password;
 	}
@@ -47,6 +53,15 @@ public class User{
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+	
+	
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	public String getEmail() {
