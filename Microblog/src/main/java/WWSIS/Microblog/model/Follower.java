@@ -25,5 +25,10 @@ public class Follower {
 
 	@Column(name="FollowedUserId", nullable=false)
 	private int followedUserId;
-	
+	public int getFollowedUserId() {
+		return followedUserId;
+	}
+	public void setFollowedUserId(int followedUserId) {
+		this.followedUserId = followedUserId;
+	}
 }
