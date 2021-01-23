@@ -17,9 +17,9 @@ FollowedUserId INTEGER FOREIGN KEY REFERENCES user(UserId)
 
 create table post (
     PostId INTEGER IDENTITY NOT NULL PRIMARY KEY,
-    UserId INTEGER FOREIGN KEY REFERENCES user(UserId),
+    UserId INTEGER FOREIGN KEY REFERENCES user(UserId) NOT NULL,
     PostText nvarchar(300) NOT NULL,
     Public BOOLEAN,
-    PostedDate DATE
+    PostedDate DATE NOT NULL
 );
 
