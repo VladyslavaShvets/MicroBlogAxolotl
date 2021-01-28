@@ -1,15 +1,17 @@
 package WWSIS.Microblog.dao;
 
+import java.util.List;
+
 import WWSIS.Microblog.model.Post;
-import org.json.JSONArray;
+
 
 public interface PostDao {
 	
-	public JSONArray getUserPosts(int userId);
+	public List<Post> getUserPosts(int userId);
 	
-	public JSONArray getUserFeed(int userId);
+	public List<Post> getUserFeed(int userId);
 	
-	public JSONArray getPublicFeed(int userId);
+	public List<Post> getPublicFeed(int userId);
 	
 	public void addUserPost(Post post);
 }
