@@ -30,29 +30,36 @@ public class PostDaoImpl implements PostDao {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Post> getUserFeed(int userId) {
-		String hql = "SELECT P.postText FROM Post P, User U " +
-					 "WHERE P.userId = userId AND " + 
-					 "(U.userId IN (SELECT userId FROM " +
-					 "";		
+		String hql = "SELECT P.* FROM Post P" +
+					 "INNER JOIN User U ON U.userId = P.userId" + 
+					 "WHERE U.userId = :userId AND " + 
+					 "(U.userId IN (SELECT F.followedUserId FROM Followed F " +
+					 "INNER JOIN User ON F.userId = User.userId" +
+					 "WHERE P.userId = :userId))" +
+					 "ORDER BY P.date";		
 		Query query = entityManager.createQuery(hql);
+		query.setParameter( "userId" , userId );
 		List results = query.getResultList();
 		return results;
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public List<Post> getPublicFeed(int userId) {
-		String hql = "SELECT P.postText FROM Post P";
+	public List<Post> getPublicFeed() {
+		String hql = "SELECT P.* FROM Post P" +
+					 "ORDER BY P.date DESC";
 		Query query = entityManager.createQuery(hql);
 		List results = query.getResultList();
 		return results;
 	}
 	
-	@SuppressWarnings({ "unused", "rawtypes" })
 	public void addUserPost(Post post) {
-		String hql = "SELECT P.postText FROM Post P";
+		String hql = "INSERT INTO Post (UserId, PostText, Public, PostedDate) VALUES (?, ?, ?, ?)";
 		Query query = entityManager.createQuery(hql);
-		List results = query.getResultList();
+		query.setParameter( 1 , post.getUserId() );
+		query.setParameter( 2 , post.getPostText() );
+		query.setParameter( 3 , post.getIsPublic() );
+		query.setParameter( 4 , post.getDate() );
+		query.executeUpdate();
 	}
-
 }
 

@@ -11,7 +11,7 @@ public interface PostDao {
 	
 	public List<Post> getUserFeed(int userId);
 	
-	public List<Post> getPublicFeed(int userId);
+	public List<Post> getPublicFeed();
 	
 	public void addUserPost(Post post);
 }
