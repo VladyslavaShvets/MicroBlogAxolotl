@@ -9,7 +9,7 @@ create table user(
 
 );
 
-create table follower (
+create table follower(
 PRIMARY KEY(UserId, FollowedUserId),
 UserId INTEGER FOREIGN KEY  REFERENCES user(UserId),
 FollowedUserId INTEGER FOREIGN KEY REFERENCES user(UserId)
