@@ -30,11 +30,11 @@ public class PostDaoImpl implements PostDao {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Post> getUserFeed(int userId) {
-		String hql = "SELECT P.* FROM Post P" +
-					 "INNER JOIN User U ON U.userId = P.userId" + 
+		String hql = "SELECT P.* FROM Post P " +
+					 "INNER JOIN User U ON U.userId = P.userId " + 
 					 "WHERE U.userId = :userId AND " + 
 					 "(U.userId IN (SELECT F.followedUserId FROM Followed F " +
-					 "INNER JOIN User ON F.userId = User.userId" +
+					 "INNER JOIN User ON F.userId = User.userId " +
 					 "WHERE P.userId = :userId))" +
 					 "ORDER BY P.date";		
 		Query query = entityManager.createQuery(hql);
@@ -45,7 +45,8 @@ public class PostDaoImpl implements PostDao {
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<Post> getPublicFeed() {
-		String hql = "SELECT P.* FROM Post P" +
+		String hql = "SELECT P.* FROM Post P " +
+					 "WHERE P.isPublic = TRUE " +
 					 "ORDER BY P.date DESC";
 		Query query = entityManager.createQuery(hql);
 		List results = query.getResultList();
