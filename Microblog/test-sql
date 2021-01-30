@@ -1,0 +1,62 @@
+DROP SCHEMA PUBLIC CASCADE;
+
+drop table user if exists;
+create table user(
+    UserId INTEGER IDENTITY NOT NULL PRIMARY KEY,
+    UserName nvarchar(55) NOT NULL,
+    BirthDate DATE NOT NULL,
+    UserPassword nvarchar(30) NOT NULL,
+    UserEmail nvarchar(30) NOT NULL,
+);
+
+drop table follower if exists;
+create table follower(
+PRIMARY KEY(UserId, FollowedUserId),
+UserId INTEGER FOREIGN KEY  REFERENCES user(UserId),
+FollowedUserId INTEGER FOREIGN KEY REFERENCES user(UserId)
+);
+
+drop table post if exists;
+create table post(
+    PostId INTEGER IDENTITY NOT NULL PRIMARY KEY,
+    UserId INTEGER FOREIGN KEY REFERENCES user(UserId),
+    PostText nvarchar(300) NOT NULL,
+    Public BOOLEAN,
+    PostedDate DATE NOT NULL,
+);
+
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Ala', TO_DATE('17/12/1993', 'DD/MM/YYYY'), 'password123', 'ala93@onet.pl');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Bob', TO_DATE('23/08/1974', 'DD/MM/YYYY'), 'DWR34#222', 'bob@mail.com');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Zosia', TO_DATE('30/06/1999', 'DD/MM/YYYY'), 'HASLOHASLO', 'zosia@mail.com');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Marek', TO_DATE('01/11/2000', 'DD/MM/YYYY'), 'qazwsx', 'marek@mail.pl');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Normad', TO_DATE('01/09/1996', 'DD/MM/YYYY'), 'UT234--r4QW', 'normad123@mail.pl');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Fil', TO_DATE('01/05/1981', 'DD/MM/YYYY'), 'ASJ1whcalI3UQOD', 'fil81@mail.com');
+INSERT INTO user (UserName, BirthDate, UserPassword, UserEmail) VALUES ('Bil', TO_DATE('01/05/1972', 'DD/MM/YYYY'), 'pa$$word1234', 'bil@mail.pl');
+
+INSERT INTO follower (UserID, FollowedUserId) VALUES (0, 1);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (1, 2);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (2, 5);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (3, 5);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (4, 5);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (6, 5);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (1, 4);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (2, 3);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (5, 0);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (6, 1);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (4, 2);
+INSERT INTO follower (UserId, FollowedUserId) VALUES (4, 0);
+
+
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (0, 'Hello World', true, TO_DATE('07/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (1, 'Lorem Ipsum', true, TO_DATE('04/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (1, 'Dzień dobry', false, TO_DATE('05/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (2, 'abcd', true, TO_DATE('03/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (3, 'ABC1', true, TO_DATE('09/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (4, 'ABC2', false, TO_DATE('02/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (5, 'ABC3', true, TO_DATE('07/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (6, 'ABC4', true, TO_DATE('04/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (5, 'ABC5', true, TO_DATE('08/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (5, 'ABC6', true, TO_DATE('09/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (5, 'ABC7', true, TO_DATE('10/11/2020', 'DD/MM/YYYY'));
+INSERT INTO post (UserId, PostText, Public, PostedDate) VALUES (2, 'ABC8', false, TO_DATE('07/11/2020', 'DD/MM/YYYY'));
+
