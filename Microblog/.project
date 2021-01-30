@@ -20,4 +20,11 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/java/WWSIS/Microblog/dao/impl/UserDaoImpl.java</name>
+			<type>1</type>
+			<location>/home/vladyslava/me/wwsis/Java_Team_project/MicroBlogAxolotl/Microblog/src/main/java/WWSIS/Microblog/dao/impl/UserDaoImpl.java</location>
+		</link>
+	</linkedResources>
 </projectDescription>
