@@ -6,9 +6,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Service;
+
 import WWSIS.Microblog.model.Post;
 import WWSIS.Microblog.service.MicroblogService;
 
+@Service
 public class MicroblogServiceFollowerImpl implements MicroblogService{
 	
 	@PersistenceContext
