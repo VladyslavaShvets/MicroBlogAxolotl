@@ -18,7 +18,7 @@
     <hibernate-entitymanager>5.2.10.Final</hibernate-entitymanager>
     <spring-orm>4.3.8.RELEASE</spring-orm>
     <spring-webmvc>4.3.8.RELEASE</spring-webmvc>
-    
+    <spring-test.version>5.2.12.RELEASE</spring-test.version>
   </properties>
 
   <dependencies>
@@ -98,6 +98,11 @@
 	    <groupId>javax.persistence</groupId>
 	    <artifactId>javax.persistence-api</artifactId>
 	    <version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>${spring-test.version}</version>
 	</dependency>
   </dependencies>
 </project>
