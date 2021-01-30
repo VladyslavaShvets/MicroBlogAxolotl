@@ -16,19 +16,19 @@ public class User{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int userId;
+	public int userId;
 
 	@Column(name="Name", nullable = false, unique = true)
-	private String userName;
+	public String userName;
 	
 	@Column(name="BirthDate", nullable = false)
 	private Date birthDate;
 
 	@Column(name="Email", nullable = false, unique = true)
-	private String email;
+	public String email;
 	
 	@Column(name="Password", nullable = false)
-	private String password;
+	public String password;
 	
 	public User(int userID, String userName, Date birthDate, String email, String password){
 		this.userId = userID;
