@@ -48,3 +48,6 @@
 <bean id= "transactionManager" class= "org.springframework.orm.jpa.JpaTransactionManager" >
 	<property name= "entityManagerFactory" ref= "entityManagerFactoryBean" />
 </bean>
+<bean id= "PostDao" class= "WWSIS.Microblog.dao.impl.PostDaoImpl" />
+<bean id= "UserDao" class= "WWSIS.Microblog.dao.impl.UserDaoImpl" />
+<bean id= "FollowerDao" class= "WWSIS.Microblog.dao.impl.FollowerDaoImpl" />
